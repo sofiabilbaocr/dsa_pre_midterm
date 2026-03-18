@@ -59,16 +59,14 @@ def cargar_canciones(lista_de_canciones):
         lista_de_canciones.append(cancion)
 
 def ejecutar_demo():
-    # Inicia la playlist vacía
     mi_playlist = LinkedList()
     print("Playlist creada (vacia)")
     
-    # Llena la playlist con las 50 canciones
     cargar_canciones(mi_playlist)
     print("Se han cargado 50 canciones exitosamente")
 
-    #Interfaz
-    continuar = "si"
+    #interfaz
+    continuar = "si" 
     while continuar == "si":
         actual = mi_playlist.current
         
@@ -76,19 +74,30 @@ def ejecutar_demo():
             print("\n" + "="*30)
             print("REPRODUCIENDO:", actual.data["nombre"])
             print("ARTISTA:", actual.data["artista"])
-            print("ALBUM:", actual.data["album"])
             print("="*30)
         
         print("\n[n] Siguiente | [p] Anterior | [q] Salir")
         opcion = input("Elige una opcion: ")
 
         if opcion == "n":
-            mi_playlist.next_song()
+            if actual.next is None:
+                print("\n Ya llegaste al FINAL de la playlist.")
+            else:
+                mi_playlist.next_song()
+                
         elif opcion == "p":
-            mi_playlist.prev_song()
+            if actual.prev is None:
+                print("\nYa estas en el INICIO de la playlist.")
+            else:
+                mi_playlist.prev_song()
+                
         elif opcion == "q":
             print("Saliendo del reproductor...")
             continuar = "no"
+            
+        else:
+            #validación de letra no válida
+            print("\n '" + opcion + "' no es una letra valida. Intentalo de nuevo.")
 
 if __name__ == "__main__":
     ejecutar_demo()
