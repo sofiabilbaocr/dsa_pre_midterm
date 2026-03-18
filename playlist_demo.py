@@ -1,6 +1,6 @@
 from ll_double_linked import LinkedList
 
-def cargar_canciones(lista_vinculada):
+def cargar_canciones(lista_de_canciones):
     # Lista de 50 canciones reales con Nombre, Artista y Álbum
     canciones = [
         {"nombre": "Bohemian Rhapsody", "artista": "Queen", "album": "A Night at the Opera"},
@@ -56,7 +56,7 @@ def cargar_canciones(lista_vinculada):
     ]
 
     for cancion in canciones:
-        lista_vinculada.append(cancion)
+        lista_de_canciones.append(cancion)
 
 def ejecutar_demo():
     # Inicia la playlist vacía
@@ -66,6 +66,29 @@ def ejecutar_demo():
     # Llena la playlist con las 50 canciones
     cargar_canciones(mi_playlist)
     print("Se han cargado 50 canciones exitosamente")
+
+    #Interfaz
+    continuar = "si"
+    while continuar == "si":
+        actual = mi_playlist.current
+        
+        if actual is not None:
+            print("\n" + "="*30)
+            print("REPRODUCIENDO:", actual.data["nombre"])
+            print("ARTISTA:", actual.data["artista"])
+            print("ALBUM:", actual.data["album"])
+            print("="*30)
+        
+        print("\n[n] Siguiente | [p] Anterior | [q] Salir")
+        opcion = input("Elige una opcion: ")
+
+        if opcion == "n":
+            mi_playlist.next_song()
+        elif opcion == "p":
+            mi_playlist.prev_song()
+        elif opcion == "q":
+            print("Saliendo del reproductor...")
+            continuar = "no"
 
 if __name__ == "__main__":
     ejecutar_demo()

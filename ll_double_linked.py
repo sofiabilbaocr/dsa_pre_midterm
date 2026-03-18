@@ -3,7 +3,7 @@ class Node:
         # El data sera el diccionario: Nombre, Artista, Album
         self.data = data
         self.next = None
-        self.prev = None  # Agregamos el puntero anterior
+        self.prev = None  # Agrega el puntero anterior
 
     def __repr__(self):
         return "| " + self.data["nombre"] + " |"
