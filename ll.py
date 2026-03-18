@@ -1,6 +1,6 @@
 class Node:
     def __init__(self, data):
-        # data es el diccionario con nombre, artista y album
+        # El diccionario contiene: Nombre de canción, Artista, Álbum
         self.data = data
         self.next = None
         self.prev = None
@@ -16,17 +16,19 @@ class LinkedList:
 
     def append(self, data):
         new_node = Node(data)
+        
+        #Si la lista está vacía
         if self.start is None:
             self.start = new_node
             self.current = new_node
             return
         
-        # buscamos el final manualmente como en clase
+        # Recorreshasta el final para insertar (Estilo Clase)
         actual = self.start
         while actual.next is not None:
             actual = actual.next
         
-        #  el último apunta al nuevo y el nuevo al último
+        # Conexión doble (punteros next y prev)
         actual.next = new_node
         new_node.prev = actual
 
